@@ -1,0 +1,10 @@
+/* attendance-form.component.css */
+.container {
+  max-width: 100%;
+}
+
+@media (max-width: 768px) {
+  .row > div {
+    margin-bottom: 1rem;
+  }
+}

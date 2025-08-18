@@ -1,0 +1,90 @@
+<app-card [showHeader]="false" [padding]="8">
+    <!-- attendance-form.component.html -->
+    <div class="container mt-4">
+        <h5 class="mb-3">Select Criteria</h5>
+
+        <form [formGroup]="attendanceForm" (ngSubmit)="onSubmit()" class="row g-3">
+            <!-- Class -->
+            <div class="col-md-4">
+                <label class="form-label fw-bold">CLASS <span class="text-danger">*</span></label>
+                <p-dropdown formControlName="class" [options]="classes" placeholder="Select Class *" styleClass="w-100">
+                </p-dropdown>
+            </div>
+
+            <!-- Section -->
+            <div class="col-md-4">
+                <label class="form-label fw-bold">SECTION <span class="text-danger">*</span></label>
+                <p-dropdown formControlName="section" [options]="sections" placeholder="Select Section *"
+                    styleClass="w-100">
+                </p-dropdown>
+            </div>
+
+            <!-- Date -->
+            <div class="col-md-4">
+                <label class="form-label fw-bold">Attendance Date <span class="text-danger">*</span></label>
+                <p-calendar formControlName="date" dateFormat="yy-mm-dd"  styleClass="w-100">
+                </p-calendar>
+            </div>
+
+            <!-- Buttons -->
+            <div style="margin-top: 10px;" class="col-12 d-flex justify-content-between mt-3">
+                <button type="submit" pButton label="SEARCH" icon="pi pi-search"
+                    class="p-button-rounded p-button-primary"></button>
+            </div>
+        </form>
+    </div>
+</app-card>
+
+@if(isSubmitted){
+    <app-card [showHeader]="false" [padding]="8">
+        <div class="container mt-4">
+            <h4 class="mb-3">Student Attendance | Class : {{ attendanceForm.get('class')?.value }}, Section : {{
+                attendanceForm.get('section')?.value }}, Date : {{ attendanceForm.get('date')?.value| date:'dd MMM,
+                yyyy'}}</h4>
+        </div>
+        <p-table [value]="students" responsiveLayout="scroll">
+        <ng-template pTemplate="header">
+            <tr>
+            <th>Registration Number</th>
+            <th>Student Name</th>
+            <th>Roll Number</th>
+            <th>Attendance</th>
+            </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-student>
+            <tr>
+            <td>{{ student.studentId }}</td>
+            <td>{{ student.studentName }}</td>
+            <td>{{ student.studentId }}</td>
+            <td class="d-flex gap-3">
+                <p-radioButton 
+                name="attendance{{student.studentId}}" 
+                value="Present" 
+                [(ngModel)]="student.status">
+                </p-radioButton>
+                <label>Present</label>
+
+                <p-radioButton 
+                name="attendance{{student.studentId}}" 
+                value="Absent" 
+                [(ngModel)]="student.status">
+                </p-radioButton>
+                <label>Absent</label>
+
+                <p-radioButton 
+                name="attendance{{student.studentId}}" 
+                value="Half Day" 
+                [(ngModel)]="student.status">
+                </p-radioButton>
+                <label>Half Day</label>
+            </td>
+            </tr>
+        </ng-template>
+        </p-table>
+        <div class="mt-3 text-end">
+            <button pButton type="button" label="Save" class="p-button-success" (click)="saveAttendance()"></button>
+        </div>
+    </app-card>
+}
+
