@@ -1,5 +1,6 @@
 // angular import
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Router } from '@angular/router';
 
 // project import
 import { SharedModule } from 'src/app/demo/shared/shared.module';
@@ -12,6 +13,7 @@ import { SharedModule } from 'src/app/demo/shared/shared.module';
 })
 export class NavRightComponent {
   // public props
+  private _router=inject(Router);
   mainCards = [
     {
       day: 'Today',
@@ -76,4 +78,11 @@ export class NavRightComponent {
       img: 'assets/images/layout/img-announcement-4.png'
     }
   ];
+  logout() {
+    // Perform logout logic here
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('refresh_token');
+    this._router.navigate(['/auth/login']);
+  }
+
 }
