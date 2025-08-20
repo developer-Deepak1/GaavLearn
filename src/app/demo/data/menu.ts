@@ -18,6 +18,30 @@ export const menus: Navigation[] = [
     ]
   },
   {
+    id: 'user',
+    title: 'User Management',
+    type: 'group',
+    icon: 'icon-navigation',
+    children: [
+      {
+        id: 'ListUser',
+        title: 'User Listing',
+        type: 'item',
+        classes: 'nav-item',
+        url: '/user-listing',
+        icon: '#custom-status-up'
+      },
+      {
+        id: 'addUser',
+        title: 'Add User',
+        type: 'item',
+        classes: 'nav-item',
+        url: '/user-add-edit',
+        icon: '#custom-status-up'
+      }
+    ]
+  },
+  {
     id: 'student',
     title: 'Student',
     type: 'group',

@@ -1,0 +1,88 @@
+<app-card [showHeader]="false" [padding]="8">
+  <div class="container mt-4 ">
+
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="row g-3">
+
+      <!-- First, Middle, Last Name in one row -->
+      <div class="col-md-4 mb-3">
+        <label for="firstName" class="form-label">First Name <span class="text-danger">*</span></label>
+        <input
+          id="firstName"
+          type="text"
+          pInputText
+          formControlName="firstName"
+          class="form-control"
+          placeholder="Enter first name"
+        />
+        <div *ngIf="userForm.get('firstName')?.invalid && userForm.get('firstName')?.touched" class="text-danger small">
+          First Name is required
+        </div>
+      </div>
+
+      <div class="col-md-4 mb-3">
+        <label for="middleName" class="form-label">Middle Name</label>
+        <input
+          id="middleName"
+          type="text"
+          pInputText
+          formControlName="middleName"
+          class="form-control"
+          placeholder="Enter middle name"
+        />
+      </div>
+
+      <div class="col-md-4 mb-3">
+        <label for="lastName" class="form-label">Last Name <span class="text-danger">*</span></label>
+        <input
+          id="lastName"
+          type="text"
+          pInputText
+          formControlName="lastName"
+          class="form-control"
+          placeholder="Enter last name"
+        />
+        <div *ngIf="userForm.get('lastName')?.invalid && userForm.get('lastName')?.touched" class="text-danger small">
+          Last Name is required
+        </div>
+      </div>
+
+      <!-- Dropdowns in next row -->
+      <div class="col-md-4 mb-3 ">
+        <label for="school" class="form-label">School <span class="text-danger">*</span></label>
+        <p-dropdown
+          id="school"
+          [options]="schools"
+          optionLabel="SchoolName"
+          optionValue="SchoolID"
+          formControlName="SchoolID"
+          placeholder="Select a school"
+          styleClass="w-100"
+        ></p-dropdown>
+      </div>
+
+      <div class="col-md-4 mb-3">
+        <label for="role" class="form-label">Role <span class="text-danger">*</span></label>
+        <p-dropdown
+          id="role"
+          [options]="roles"
+          optionLabel="RoleName"
+          optionValue="RoleID"
+          formControlName="RoleID"
+          placeholder="Select a role"
+          styleClass="w-100"
+        ></p-dropdown>
+      </div>
+
+      <!-- Submit -->
+      <div class="col-12 text-center mt-8 ">
+        <button
+          pButton
+          type="submit"
+          label="Save"
+          class="p-button-primary px-4"
+          [disabled]="userForm.invalid"
+        ></button>
+      </div>
+    </form>
+  </div>
+</app-card>

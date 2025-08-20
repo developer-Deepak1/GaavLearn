@@ -42,6 +42,16 @@ export const AdminRoutes: Routes = [
         path: 'fee-receipt',
         loadComponent: () => import('./features/fee-receipt/fee-receipt.component').then((m) => m.FeeReceiptComponent),
         canActivate: [authGuard]
+      },
+      {
+        path: 'user-listing',
+        loadComponent: () => import('./features/user-listing/user-listing.component').then((m) => m.UserListingComponent),
+        canActivate: [authGuard]
+      },
+      {
+        path: 'user-add-edit',
+        loadComponent: () => import('./features/user-add-edit/user-add-edit.component').then((m) => m.UserAddEditComponent),
+        canActivate: [authGuard]
       }
     ]
   }
