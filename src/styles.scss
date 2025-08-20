@@ -36,5 +36,8 @@
 @import "primeng/resources/primeng.min.css";
 @import "primeicons/primeicons.css";
 
-@import "bootstrap/scss/bootstrap";
 
+ol, ul {
+    padding-left: 0rem !important;
+    margin-bottom: 0rem !important;
+}
