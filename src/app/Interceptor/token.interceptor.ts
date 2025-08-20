@@ -2,9 +2,12 @@ import { HttpInterceptorFn, HttpResponse } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError, switchMap, throwError } from 'rxjs';
+import { environment } from 'src/environments/environment';
+import { LoginResponse } from '../commonService/user.model';
 
 export const tokenInterceptor: HttpInterceptorFn = (req, next) => {
   const http = inject(HttpClient);
+  const baseUrl = environment.baseUrl;
 
   const token = localStorage.getItem('access_token');
   let authReq = req;
@@ -29,19 +32,19 @@ export const tokenInterceptor: HttpInterceptorFn = (req, next) => {
         }
 
         // Call refresh API
-        return http.post<{ access_token: string, refresh_token: string }>(
-          '/auth/refresh',
+        return http.post<LoginResponse>(
+          `${baseUrl}/refresh-token`,
           { refresh_token: refreshToken }
         ).pipe(
           switchMap((res) => {
             // Save new tokens
-            localStorage.setItem('access_token', res.access_token);
+            localStorage.setItem('access_token', res.token);
             localStorage.setItem('refresh_token', res.refresh_token);
 
             // Retry the original request with new token
             const clonedReq = req.clone({
               setHeaders: {
-                Authorization: `Bearer ${res.access_token}`
+                Authorization: `Bearer ${res.token}`
               }
             });
             return next(clonedReq);
