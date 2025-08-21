@@ -8,12 +8,12 @@
     </a>
   </button>
   <!-- [matMenuTriggerFor]="user" -->
-  <button mat-button  aria-label="mode" class="header-item">
+  <button mat-button [matMenuTriggerFor]="user"  aria-label="mode" class="header-item">
     <a class="pc-head-link">
       <img src="assets/images/user/avatar-2.jpg" alt="user-image" class="user-avatar" />
     </a>
   </button>
-  <!-- <mat-menu #Notification="matMenu" xPosition="before" class="dropdown-notification">
+  <mat-menu #Notification="matMenu" xPosition="before" class="dropdown-notification">
     <div class="dropdown-header flex align-item-center justify-content-between">
       <h5 class="m-b-0">Notification</h5>
       <a href="javascript:" class="mat-body text-primary-500">Mark all read</a>
@@ -47,8 +47,8 @@
         }
       </div>
     </ng-scrollbar>
-  </mat-menu> -->
-  <!-- <mat-menu #user="matMenu" xPosition="before" class="dropdown-user-profile">
+  </mat-menu> 
+   <mat-menu #user="matMenu" xPosition="before" class="dropdown-user-profile">
     <div class="dropdown-header flex align-item-center justify-content-between">
       <h5 class="user-title">Profile</h5>
     </div>
@@ -59,12 +59,12 @@
             <img src="assets/images/user/avatar-2.jpg" alt="user-images" class="user-avatar" />
           </div>
           <div class="topic-description m-l-15">
-            <h6 class="user-name">Carson Darrin 🖖</h6>
-            <p class="mat-body">carson.darrin&#64;company.io</p>
+            <h6 class="user-name">Deepak kumar 🖖</h6>
+            <p class="mat-body">deepak.kumar&#64;company.io</p>
           </div>
         </div>
         <mat-divider class="m-b-15 m-t-15"></mat-divider>
-        <app-card [showHeader]="false" [padding]="16">
+        <!-- <app-card [showHeader]="false" [padding]="16">
           <div class="flex align-items-center justify-content-between">
             <h5 class="m-b-0 flex-inline align-item-center f-16 f-w-600">
               <svg class="pc-icon text-muted m-r-10">
@@ -74,8 +74,8 @@
             </h5>
             <mat-slide-toggle color="primary" (click)="$event.stopPropagation()"></mat-slide-toggle>
           </div>
-        </app-card>
-        <h6 class="m-b-15">Manage</h6>
+        </app-card> -->
+        <!-- <h6 class="m-b-15">Manage</h6>
         <a href="javascript:" class="dropdown-item text-muted">
           <svg class="pc-icon m-r-10">
             <use xlink:href="assets/fonts/custom-icon.svg#custom-setting-outline"></use>
@@ -87,7 +87,7 @@
             <use xlink:href="assets/fonts/custom-icon.svg#custom-share-bold"></use>
           </svg>
           <h6 class="m-b-0">Share</h6>
-        </a>
+        </a> -->
         <a href="javascript:" class="dropdown-item text-muted">
           <svg class="pc-icon m-r-10">
             <use xlink:href="assets/fonts/custom-icon.svg#custom-lock-outline"></use>
@@ -95,7 +95,7 @@
           <h6 class="m-b-0">Change Password</h6>
         </a>
         <mat-divider class="m-b-15 m-t-15"></mat-divider>
-        <h6 class="m-b-15">Team</h6>
+        <!-- <h6 class="m-b-15">Team</h6>
         <a href="javascript:" class="dropdown-item text-muted justify-content-between">
           <span class="flex">
             <svg class="pc-icon m-r-10">
@@ -145,10 +145,10 @@
               </svg>
             </span>
           </div>
-        </a>
+        </a> -->
         <mat-divider class="m-b-15 m-t-15"></mat-divider>
         <div class="grid m-b-15">
-          <button mat-flat-button color="primary" class="user-logout">
+          <button mat-flat-button color="primary" class="user-logout" (click)="logout()">
             <div class="flex-inline align-item-center">
               <svg class="pc-icon m-r-10">
                 <use xlink:href="assets/fonts/custom-icon.svg#custom-logout-1-outline"></use>
@@ -157,7 +157,7 @@
             </div>
           </button>
         </div>
-        <app-card cardClass="m-b-0 user-account-card" [showHeader]="false" [padding]="16">
+        <!-- <app-card cardClass="m-b-0 user-account-card" [showHeader]="false" [padding]="16">
           <div class="user-group">
             <img src="assets/images/user/avatar-1.jpg" alt="user-image" class="avatar" />
             <img src="assets/images/user/avatar-2.jpg" alt="user-image" class="avatar" />
@@ -175,8 +175,8 @@
               Upgrade to Business
             </div>
           </button>
-        </app-card>
+        </app-card> -->
       </div>
     </ng-scrollbar>
-  </mat-menu> -->
+  </mat-menu>
 </div>

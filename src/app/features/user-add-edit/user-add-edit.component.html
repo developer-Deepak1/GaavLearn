@@ -1,0 +1,129 @@
+<app-card [showHeader]="false" [padding]="8">
+  <div class="container mt-4 ">
+
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="row g-3">
+
+      <!-- First, Middle, Last Name in one row -->
+      <div class="col-md-4 mb-2">
+        <label for="FirstName" class="form-label">First Name <span class="text-danger">*</span></label>
+        <input
+          id="FirstName"
+          type="text"
+          pInputText
+          formControlName="FirstName"
+          class="form-control"
+          placeholder="Enter first name"
+        />
+        <div *ngIf="userForm.get('FirstName')?.invalid && userForm.get('FirstName')?.touched" class="text-danger small">
+          First Name is required
+        </div>
+      </div>
+
+      <div class="col-md-4 mb-2">
+        <label for="MiddleName" class="form-label">Middle Name</label>
+        <input
+          id="MiddleName"
+          type="text"
+          pInputText
+          formControlName="MiddleName"
+          class="form-control"
+          placeholder="Enter middle name"
+        />
+      </div>
+
+      <div class="col-md-4 mb-2">
+        <label for="LastName" class="form-label">Last Name <span class="text-danger">*</span></label>
+        <input
+          id="LastName"
+          type="text"
+          pInputText
+          formControlName="LastName"
+          class="form-control"
+          placeholder="Enter last name"
+        />
+        <div *ngIf="userForm.get('LastName')?.invalid && userForm.get('LastName')?.touched" class="text-danger small">
+          Last Name is required
+        </div>
+      </div>
+
+       <div class="col-md-4 mb-2">
+        <label for="Email" class="form-label">Email</label>
+        <input
+          id="Email"
+          type="text"
+          pInputText
+          formControlName="Email"
+          class="form-control"
+          placeholder="Enter email"
+        />
+        <div *ngIf="userForm.get('Email')?.invalid && userForm.get('Email')?.touched" class="text-danger small">
+          Email is required
+        </div>
+      </div>
+      <div class="col-md-4 mb-2">
+        <label for="Mobile" class="form-label">Mobile Number<span class="text-danger">*</span></label>
+        <input
+          id="Mobile"
+          type="text"
+          pInputText
+          formControlName="Mobile"
+          class="form-control"
+          placeholder="Enter mobile number"
+        />
+        <div *ngIf="userForm.get('Mobile')?.invalid && userForm.get('Mobile')?.touched" class="text-danger small">
+           <div *ngIf="userForm.get('Mobile')?.errors?.['required']">
+              Mobile Number is required
+            </div>
+            <div *ngIf="userForm.get('Mobile')?.errors?.['pattern']">
+              Mobile Number is invalid
+            </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 mb-2">
+        <label for="RoleID" class="form-label">Role <span class="text-danger">*</span></label>
+        <p-dropdown
+          id="RoleID"
+          [options]="roles" 
+          optionLabel="RoleName"
+          optionValue="RoleID"
+          formControlName="RoleID"
+          placeholder="Select a role"
+          styleClass="w-100"
+        ></p-dropdown>
+         <div *ngIf="userForm.get('RoleID')?.invalid && userForm.get('RoleID')?.touched" class="text-danger small">
+          Role is required
+        </div>
+      </div>
+
+      <!-- Dropdowns in next row -->
+      <div class="col-md-4 mb-2">
+        <label for="SchoolID" class="form-label">School <span class="text-danger">*</span></label>
+        <p-dropdown
+          id="SchoolID"
+          [options]="schools"
+          optionLabel="SchoolName"
+          optionValue="SchoolID"
+          formControlName="SchoolID"
+          placeholder="Select a school"
+          styleClass="w-100"
+        ></p-dropdown>
+        <div *ngIf="userForm.get('SchoolID')?.invalid && userForm.get('SchoolID')?.touched" class="text-danger small">
+          School is required
+        </div>
+      </div>
+
+
+      <!-- Submit -->
+      <div style="margin-top: 10px;"  class="col-12 text-center">
+        <button
+          pButton
+          type="submit"
+          label="Save"
+          class="p-button-primary px-4"
+          [disabled]="userForm.invalid||isSubmitting"
+        ></button>
+      </div>
+    </form>
+  </div>
+</app-card>

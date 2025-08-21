@@ -1,4 +1,4 @@
-import { DatePipe } from '@angular/common';
+import { DatePipe, formatDate } from '@angular/common';
 import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
@@ -50,10 +50,20 @@ export class StudentAttendanceComponent implements OnInit {
       console.log(this.attendanceForm.value);
       this.isSubmitted=true;
       const rawDate = this.attendanceForm.value.date;
-      this._studentService.getByAttendanceDate(this.attendanceForm.value.class, this.attendanceForm.value.section, rawDate).subscribe(students => {
+      this._studentService.getByAttendanceDate(this.attendanceForm.value.class, this.attendanceForm.value.section, this.toYMD(rawDate)).subscribe(students => {
       this.students = students?.data;
     });
     }
+  }
+  private toYMD(val: Date | string | null | undefined): string {
+    if (!val) return '';
+    if (val instanceof Date) {
+      // local timezone-safe
+      return formatDate(val, 'yyyy-MM-dd', 'en-IN'); // or val.toLocaleDateString('en-CA')
+    }
+    // If it’s already a string, normalize it
+    const d = new Date(val);
+    return isNaN(+d) ? '' : formatDate(d, 'yyyy-MM-dd', 'en-IN');
   }
 
   attendanceOptions = ['Present', 'Absent', 'Half Day'];

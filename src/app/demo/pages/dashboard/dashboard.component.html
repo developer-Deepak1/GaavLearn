@@ -1,17 +1,16 @@
-<app-dashboard-content></app-dashboard-content>
-<div class="row widget-chart p-t-25">
-  @for (item of cards; track $index) {
-      <div class="col-md-6 col-xxl-3">
-        <app-card [showHeader]="false">
-          <div class="stat-card" [ngStyle]="{'background': item.color}">
-            <div class="stat-title">{{ item.title }}</div>
-            <div class="stat-count">{{ item.count }}</div>
-            <div class="stat-subtitle">{{ item.subtitle }}</div>
-          </div>
-        </app-card>
-      </div>
-    }
-  </div>
+@if(USER_ROLES.SUPER_ADMIN==userRoleID) {
+  <app-dashboard-super-admin></app-dashboard-super-admin>
+}
+@if(USER_ROLES.CLIENT_ADMIN==userRoleID) {
+  <app-dashboard-client-admin></app-dashboard-client-admin>
+}
+@if(USER_ROLES.TEACHER==userRoleID) {
+  <app-dashboard-teacher></app-dashboard-teacher>
+}
+@if (USER_ROLES.STUDENT==userRoleID) {
+  <app-dashboard-student></app-dashboard-student>
+}
+<!-- <app-dashboard-content></app-dashboard-content> -->
   <!-- <div class="col-md-6 col-xxl-3">
     <app-card [showHeader]="false">
       <div class="flex align-item-center">

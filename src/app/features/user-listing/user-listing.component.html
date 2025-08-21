@@ -1,0 +1,30 @@
+<app-card [showHeader]="false" [padding]="8" >
+  <!-- <div class="card"> -->
+  <p-table
+    [value]="userList"
+    [paginator]="true"
+    [rows]="15"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    [rowsPerPageOptions]="[15,20, 25]"
+    [scrollable]="false" 
+  >
+    <!-- Table Header -->
+    <ng-template pTemplate="header">
+      <tr>
+        @for (item of columns; track $index) {
+            <th>{{ item.header }}</th>
+        }
+      </tr>
+    </ng-template>
+
+    <!-- Table Body -->
+    <ng-template pTemplate="body" let-student>
+      <tr>
+        <td *ngFor="let col of columns">
+          {{ student[col.field] }}
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+<!-- </div> -->
+</app-card>
