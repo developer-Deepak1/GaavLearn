@@ -7,6 +7,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdminRoutes, EmptyRoutes } from './app-routes';
 import { tokenInterceptor } from './Interceptor/token.interceptor';
+import { loaderInterceptor } from './Interceptor/loader.interceptor';
 
 const routes: Routes = [
   ...AdminRoutes,
@@ -18,7 +19,7 @@ const routes: Routes = [
   exports: [RouterModule],
   providers: [
     provideHttpClient(
-      withInterceptors([tokenInterceptor])
+      withInterceptors([tokenInterceptor, loaderInterceptor])
     )
   ]
 })
