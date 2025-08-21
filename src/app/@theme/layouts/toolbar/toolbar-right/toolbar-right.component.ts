@@ -80,8 +80,7 @@ export class NavRightComponent {
   ];
   logout() {
     // Perform logout logic here
-    localStorage.removeItem('access_token');
-    localStorage.removeItem('refresh_token');
+    localStorage.clear();
     this._router.navigate(['/auth/login']);
   }
 

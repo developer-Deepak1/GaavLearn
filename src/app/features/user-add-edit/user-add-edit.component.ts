@@ -5,7 +5,8 @@ import { CalendarModule } from 'primeng/calendar';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
 import { CardComponent } from 'src/app/@theme/components/card/card.component';
-import { Role, School } from 'src/app/commonService/user.model';
+import { USER_ROLES } from 'src/app/commonService/constants';
+import { getAddUserInfo, Role, School } from 'src/app/commonService/user.model';
 import { UserService } from 'src/app/commonService/user.service';
 
 
@@ -20,7 +21,8 @@ export class UserAddEditComponent {
  private userService= inject(UserService);
  schools: School[] = [];
  roles: Role[] = [];
- isSubmitting:boolean = false;  
+ isSubmitting:boolean = false;
+ RoleID: number | null = null;
 
  constructor() {
    this.userForm = new FormGroup({
@@ -48,12 +50,17 @@ export class UserAddEditComponent {
       }
       SchoolIDControl?.updateValueAndValidity();
     });
-
-    this.userService.GetSchools().subscribe((data: School[]) => {
-      this.schools = data;
-    });
-    this.userService.GetRoles().subscribe((data: Role[]) => {
-      this.roles = data;
+    this.RoleID = this.userService.GetUserRoleID();
+    this.userService.getAddUserInfo().subscribe((data: getAddUserInfo) => {
+      this.schools = data.schools;
+      this.roles = data.roles;
+       // ✅ If only one school, set default and disable
+      if (this.schools.length && USER_ROLES.SUPER_ADMIN !== this.RoleID) {
+        this.userForm.get('SchoolID')?.setValue(this.schools[0].SchoolID);   // or .value depending on your object
+      }
+       if (this.roles.length) {
+        this.userForm.get('RoleID')?.setValue(this.roles[0].RoleID);   // or .value depending on your object
+      }
     });
   }
  onSubmit() {

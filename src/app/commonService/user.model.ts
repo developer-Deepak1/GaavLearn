@@ -20,6 +20,14 @@ export interface Role {
   RoleID: string;
   RoleName: string;
 }
+export interface getAddUserInfo {
+  schools: School[];
+  roles: Role[];
+}
+export interface updatePassword {
+  newPassword: string;
+  oldPassword: string;
+}
 
 export interface UserForm {
   firstName: string;
