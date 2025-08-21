@@ -1,0 +1,22 @@
+<app-card [showHeader]="false">
+<div>
+    <div class="row">
+        <div class="col-12">
+        <h2>Academic Overview</h2>
+        </div>
+    </div>
+</div>
+<div class="row widget-chart p-t-25">
+  @for (item of cards; track $index) {
+      <div class="col-md-6 col-xxl-3">
+        <app-card [showHeader]="false" [padding]="0">
+          <div class="stat-card" [ngStyle]="{'background': item.color}">
+            <div class="stat-title">{{ item.title }}</div>
+            <div class="stat-count">{{ item.count }}</div>
+            <div class="stat-subtitle">{{ item.subtitle }}</div>
+          </div>
+        </app-card>
+      </div>
+    }
+  </div>
+</app-card>

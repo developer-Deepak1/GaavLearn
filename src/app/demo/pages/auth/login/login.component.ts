@@ -37,11 +37,12 @@ export default class LoginComponent {
   onSubmit() {
     if (this.Email && this.password) {
       this._userService.login(this.Email, this.password).subscribe({
-        next: (response: LoginResponse) => {
+        next: (response: any) => {
           console.log('Login successful', response);
           localStorage.setItem('access_token', response.token);
           localStorage.setItem('refresh_token', response.refresh_token);
-          this._router.navigate(['/']);
+          localStorage.setItem('user', JSON.stringify(response.userInformation));
+          this._router.navigate(['/dashboard']);
         },
         error: (error) => {
           console.error('Login failed', error);
@@ -52,6 +53,7 @@ export default class LoginComponent {
       });
     }
   }
+
   loginType = [
     {
       image: 'assets/images/authentication/facebook.svg',

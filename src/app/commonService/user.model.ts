@@ -20,3 +20,22 @@ export interface Role {
   RoleID: string;
   RoleName: string;
 }
+
+export interface UserForm {
+  firstName: string;
+  middleName?: string;
+  lastName: string;
+  email?: string;
+  mobile: string;
+  schoolID: string;
+  roleID: string;
+  }
+
+export interface UserListing {
+  UserID: string;
+  Username: string;
+  RoleID: string;
+  FullName: string;
+  ContactNumber: string;
+  EmailID: string;
+}

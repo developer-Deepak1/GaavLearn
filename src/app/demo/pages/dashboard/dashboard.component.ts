@@ -1,5 +1,5 @@
 // angular import
-import { Component, viewChild } from '@angular/core';
+import { Component, inject, viewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 // project import
@@ -8,16 +8,24 @@ import { ChartDB } from 'src/app/fake-data/chartDB';
 
 // third party
 import { ApexOptions, ChartComponent, NgApexchartsModule } from 'ng-apexcharts';
-import { DashboardContentComponent } from "src/app/features/dashboard-content/dashboard-content.component";
+import { USER_ROLES } from 'src/app/commonService/constants';
+import { UserService } from 'src/app/commonService/user.service';
+import { DashboardClientAdminComponent } from "src/app/dashboard/dashboard-client-admin/dashboard-client-admin.component";
+import { DashboardSuperAdminComponent } from "src/app/dashboard/dashboard-super-admin/dashboard-super-admin.component";
+import { DashboardTeacherComponent } from "src/app/dashboard/dashboard-teacher/dashboard-teacher.component";
+import { DashboardStudentComponent } from "src/app/dashboard/dashboard-student/dashboard-student.component";
 
 @Component({
   selector: 'app-dashboard',
-  imports: [CommonModule, SharedModule, NgApexchartsModule, DashboardContentComponent],
+  imports: [CommonModule, SharedModule, NgApexchartsModule, DashboardClientAdminComponent, DashboardSuperAdminComponent, DashboardTeacherComponent, DashboardStudentComponent],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
 export default class DashboardComponent {
   // public props
+  public userRoleID: number | null = null;
+  private _userService = inject(UserService);
+
   chart = viewChild<ChartComponent>('chart');
   earningChart: Partial<ApexOptions>;
   pageViewChart: Partial<ApexOptions>;
@@ -42,6 +50,7 @@ export default class DashboardComponent {
         { title: 'Total Teachers', count: 15, subtitle: 'Teachers available', color: '#FF9800' },
         { title: 'Total Subjects', count: 8, subtitle: 'Subjects offered', color: '#9C27B0' }
   ];
+   USER_ROLES = USER_ROLES; // make it accessible in template
 
   // constructor
   constructor() {
@@ -64,6 +73,7 @@ export default class DashboardComponent {
     this.totalTasksChart = totalTasksChart;
     this.pendingTasksChart = pendingTasksChart;
     this.totalIncomeChart = totalIncomeChart;
+    this.userRoleID = this._userService.GetUserRoleID();
   }
 
   // public method

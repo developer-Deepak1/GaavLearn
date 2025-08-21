@@ -1,12 +1,13 @@
 // Angular Import
 import { Component, inject, input } from '@angular/core';
-import { NavigationEnd, Router, RouterModule, Event } from '@angular/router';
+import { NavigationEnd, Router, RouterModule, Event, RouterLink } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 
 // project import
 import { NavigationItem } from '../../types/navigation';
 
 import { menus } from 'src/app/demo/data/menu';
+import { CommonModule } from '@angular/common';
 
 interface titleType {
   // eslint-disable-next-line
@@ -18,7 +19,7 @@ interface titleType {
 
 @Component({
   selector: 'app-breadcrumb',
-  imports: [RouterModule],
+  imports: [RouterModule,CommonModule,RouterLink],
   templateUrl: './breadcrumb.component.html',
   styleUrls: ['./breadcrumb.component.scss']
 })
@@ -44,11 +45,14 @@ export class BreadcrumbComponent {
   setBreadcrumb() {
     this.route.events.subscribe((router: Event) => {
       if (router instanceof NavigationEnd) {
+        if (router.url=='/') {
+          router.url = '/dashboard';
+        }
         const activeLink = router.url;
         const breadcrumbList = this.filterNavigation(this.navigations, activeLink);
         this.navigationList = breadcrumbList;
         const title = breadcrumbList[breadcrumbList.length - 1]?.title || 'Welcome';
-        this.titleService.setTitle(title + ' | Able pro Angular free Admin Template');
+        this.titleService.setTitle(title + '');
       }
     });
   }
