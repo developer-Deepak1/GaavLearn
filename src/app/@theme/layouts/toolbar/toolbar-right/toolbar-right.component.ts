@@ -1,6 +1,7 @@
 // angular import
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { DialogServiceService } from 'src/app/commonService/dialog-service.service';
 
 // project import
 import { SharedModule } from 'src/app/demo/shared/shared.module';
@@ -14,6 +15,7 @@ import { SharedModule } from 'src/app/demo/shared/shared.module';
 export class NavRightComponent {
   // public props
   private _router=inject(Router);
+  private dialogService = inject(DialogServiceService);
   mainCards = [
     {
       day: 'Today',
@@ -80,9 +82,11 @@ export class NavRightComponent {
   ];
   logout() {
     // Perform logout logic here
-    localStorage.removeItem('access_token');
-    localStorage.removeItem('refresh_token');
+    localStorage.clear();
     this._router.navigate(['/auth/login']);
+  }
+  showChangePasswordDialog() {
+    this.dialogService.show();
   }
 
 }

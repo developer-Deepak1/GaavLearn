@@ -90,6 +90,7 @@
           formControlName="RoleID"
           placeholder="Select a role"
           styleClass="w-100"
+          appendTo="body"
         ></p-dropdown>
          <div *ngIf="userForm.get('RoleID')?.invalid && userForm.get('RoleID')?.touched" class="text-danger small">
           Role is required
@@ -107,6 +108,7 @@
           formControlName="SchoolID"
           placeholder="Select a school"
           styleClass="w-100"
+          appendTo="body"
         ></p-dropdown>
         <div *ngIf="userForm.get('SchoolID')?.invalid && userForm.get('SchoolID')?.touched" class="text-danger small">
           School is required
