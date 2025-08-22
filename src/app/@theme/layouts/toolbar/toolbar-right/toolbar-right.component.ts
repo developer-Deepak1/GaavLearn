@@ -86,7 +86,8 @@ export class NavRightComponent implements OnInit {
     const userData = localStorage.getItem('user');
     if (userData) {
       const user = JSON.parse(userData);
-      this.FullName = this.FullName = [user.FirstName, user.MiddleName, user.LastName]
+      //[user.FirstName, user.MiddleName, user.LastName]
+      this.FullName = this.FullName = [user.FirstName]
       .filter(name => !!name)   // removes null, undefined, and empty string
       .join(' ');
       this.UserName = user.Username;

@@ -136,3 +136,25 @@
     }
   }
 }
+
+
+
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.user-info {
+  line-height: 1.2;
+}
+
+.user-name {
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.user-role {
+  font-size: 12px;
+  color: #666; /* grey like in your screenshot */
+}
