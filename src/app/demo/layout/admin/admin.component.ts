@@ -13,10 +13,11 @@ import { SharedModule } from '../../shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { NavBarComponent } from 'src/app/@theme/layouts/toolbar/toolbar.component';
 import { VerticalMenuComponent } from 'src/app/@theme/layouts/menu/vertical-menu';
+import { MainDialogboxComponent } from 'src/app/main-dialogbox/main-dialogbox.component';
 
 @Component({
   selector: 'app-admin',
-  imports: [FooterComponent, BreadcrumbComponent, SharedModule, RouterModule, NavBarComponent, VerticalMenuComponent],
+  imports: [FooterComponent, MainDialogboxComponent, BreadcrumbComponent, SharedModule, RouterModule, NavBarComponent, VerticalMenuComponent],
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.scss']
 })
