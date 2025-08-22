@@ -39,6 +39,9 @@
     width: $sidebar-width;
     background: inherit;
   }
+  .navbar-border-bottom{
+    border-bottom: 1px dashed var(--accent-400) !important;
+  }
 
   .user-card {
     margin: 0 15px 15px;
