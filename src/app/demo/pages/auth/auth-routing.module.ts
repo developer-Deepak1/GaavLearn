@@ -12,6 +12,10 @@ const routes: Routes = [
       {
         path: 'register',
         loadComponent: () => import('./register/register.component')
+      },
+      {
+        path: 'access-denied',
+        loadComponent: () => import('./access-denied/access-denied.component').then(m => m.AccessDeniedComponent)
       }
     ]
   }

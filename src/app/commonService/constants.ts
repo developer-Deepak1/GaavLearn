@@ -1,8 +1,8 @@
 export const USER_ROLES = {
   SUPER_ADMIN: 1,
   CLIENT_ADMIN: 2,
-  TEACHER: 3,
-  STUDENT: 4,
+  TEACHER: 4,
+  STUDENT: 3,
   MANAGER: 5,
   USER: 6
 };

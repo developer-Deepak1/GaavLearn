@@ -12,7 +12,8 @@ import { UserService } from 'src/app/commonService/user.service';
   styleUrl: './user-listing.component.scss'
 })
 export class UserListingComponent implements OnInit {
-  private _userService = inject(UserService); 
+  private _userService = inject(UserService);
+  public schoolID: string | null = null;
   userList: UserListing[] = [];
   columns=[
     { field: 'Username', header: 'Username' },
@@ -20,13 +21,16 @@ export class UserListingComponent implements OnInit {
     { field: 'FullName', header: 'FullName' },
     { field: 'ContactNumber', header: 'ContactNumber' },
     { field: 'EmailID', header: 'EmailID' },
-    { field: 'SchoolName', header: 'SchoolName' },
   ];
 
   ngOnInit(): void {
     this._userService.getAllUsers().subscribe(users => {
       this.userList = users;
     });
+    this.schoolID = this._userService.GetUserSchoolID();
+    if (this.schoolID === null) {
+      this.columns.push({ field: 'SchoolName', header: 'SchoolName' });
+    }
   }
 
 }
