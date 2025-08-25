@@ -1,0 +1,117 @@
+<p-toast></p-toast>
+<p-confirmDialog></p-confirmDialog>
+<div class="container mt-4 bg-white p-3 rounded shadow-sm">
+  <!-- Header Section -->
+  <div class="row align-items-center mb-3">
+    <div class="col-12 col-md-8">
+      <h3 class="fw-bold">Manage Classes</h3>
+      <p class="text-muted mb-2">Add, modify, or remove classes.</p>
+    </div>
+    <div class="col-12 col-md-4 text-md-end">
+      <button pButton 
+              label="Add Class" 
+              icon="pi pi-plus" 
+              class="p-button-primary d-block d-md-inline-block"
+              (click)="addClass()">
+      </button>
+    </div>
+  </div>
+  <ng-container *ngIf="classes && classes.length > 0; else noClassesTemplate">
+        <!-- Table / Cards -->
+    <p-table 
+    [value]="classes"
+    [paginator]="true"
+    [rows]="10"
+    [showCurrentPageReport]="true"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} classes"
+    >
+     <!-- Dynamic Header -->
+    <ng-template pTemplate="header">
+      <tr>
+        <th class="text-center" *ngFor="let col of cols">
+          {{ col.header }}
+        </th>
+        <th class="text-center">Actions</th>
+      </tr>
+    </ng-template>
+
+    <!-- Dynamic Body -->
+    <ng-template pTemplate="body" let-classes>
+      <tr>
+        <td class="text-center" *ngFor="let col of cols" [attr.data-label]="col.header">
+          {{ classes[col.field] }}
+        </td>
+        <td data-label="Actions" class="text-center">
+          <button pButton 
+                  icon="pi pi-pencil" 
+                  class="p-button-text p-button-sm me-2"
+                  (click)="editClass(classes)">
+          </button>
+          <button pButton 
+                  icon="pi pi-trash" 
+                  class="p-button-text p-button-danger p-button-sm"
+                  (click)="confirm2($event, classes.ClassID)">
+          </button>
+        </td>
+      </tr>
+    </ng-template>
+    </p-table>
+  </ng-container>
+  <ng-template #noClassesTemplate>
+    <p>No classes found.</p>
+  </ng-template>
+</div>
+<div class="card flex justify-content-center">
+  <p-dialog 
+      header="Add New Class" 
+      [modal]="true"   
+      [(visible)]="visible" 
+      [style]="{ width: '90vw', maxWidth: '500px' }" 
+      [draggable]="false"
+      [resizable]="false" 
+      (onHide)="onCancel()"
+      >
+
+      <form [formGroup]="classesForm" (ngSubmit)="isEdit ? updateClass() : onSubmit()">
+      <div class="p-fluid"> <!-- 👈 THIS makes inputs full-width in PrimeNG -->
+
+        <!-- Class Name -->
+        <div class="field mb-3">
+          <label for="ClassDisplayName" class="font-semibold block mb-2 required">Class Name</label>
+          <input pInputText id="ClassDisplayName" autocomplete="off" formControlName="ClassDisplayName"/>
+          <small class="text-danger" *ngIf="classesForm.get('ClassDisplayName')?.touched && classesForm.get('ClassDisplayName')?.hasError('required')">
+          Class Name is required
+        </small>
+        <small class="text-danger" 
+         *ngIf="classesForm.get('ClassDisplayName')?.touched && 
+                classesForm.get('ClassDisplayName')?.hasError('pattern')">
+          Only alphabets, numbers, and spaces are allowed
+        </small>
+        </div>
+        
+        <!-- Class Fee -->
+        <div class="field mb-3">
+          <label for="ClassFee" class="font-semibold block mb-2 required">Class Fee</label>
+          <input pInputText id="ClassFee" autocomplete="off" formControlName="ClassFee"/>
+          <small class="text-danger" *ngIf="classesForm.get('ClassFee')?.touched && classesForm.get('ClassFee')?.hasError('required')">
+          Class Fee is required
+          </small>
+          <!-- Pattern error -->
+          <small class="text-danger" 
+                *ngIf="classesForm.get('ClassFee')?.touched && 
+                        classesForm.get('ClassFee')?.hasError('pattern')">
+            Only numbers allowed (up to 2 decimal places)
+          </small>
+        </div>
+
+      </div>
+
+      <!-- Buttons -->
+      <div class="flex justify-content-end gap-2 mt-4">
+        <p-button label="Cancel" severity="secondary" (onClick)="onCancel()" />
+        <p-button label="{{ isEdit ? 'Update' : 'Save' }}" type="submit" />
+      </div>
+      </form>
+  </p-dialog>
+</div>
+

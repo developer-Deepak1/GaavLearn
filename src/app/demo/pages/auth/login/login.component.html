@@ -1,3 +1,4 @@
+<p-toast [life]="10000"></p-toast>
 <div class="auth-main">
   <div class="auth-wrapper version-1">
     <div class="auth-form">
@@ -25,9 +26,9 @@
           <div class="separator">
             <span>OR</span>
           </div> -->
-          <h4 class="text-center m-b-25 f-20 f-w-500">Login With Your Email</h4>
+          <h4 class="text-center m-b-25 f-20 f-w-500">Login With Your Username</h4>
           <div class="text-start">
-            <label for="name" class="f-w-500">Enter Your Email</label>
+            <label for="name" class="f-w-500">Enter Your Username</label>
             <mat-form-field appearance="outline" class="w-100 m-t-5">
               <input matInput [formControl]="email" required [(ngModel)]="Email" />
               @if (email.invalid) {

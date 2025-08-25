@@ -10,7 +10,7 @@ body {
     color: var(--accent-800) !important;
 
     .mat-drawer {
-      background-color: var(--accent-100) !important;
+      background-color:white !important;
 
       &.mat-drawer-side {
         border-right: 1px dashed var(--accent-400) !important;
@@ -26,7 +26,7 @@ body {
   /*  @ mat toolbar
   /* -------------------------------------------------------------------------- */
   .mat-toolbar {
-    background: transparent !important;
+    border-bottom: 1px dashed var(--accent-400) !important;
 
     &.mat-toolbar-single-row {
       padding: 0px !important; // reduce toolbar padding to match up with container

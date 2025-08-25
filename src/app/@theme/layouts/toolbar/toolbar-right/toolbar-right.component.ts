@@ -1,5 +1,5 @@
 // angular import
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DialogServiceService } from 'src/app/commonService/dialog-service.service';
 
@@ -12,7 +12,9 @@ import { SharedModule } from 'src/app/demo/shared/shared.module';
   templateUrl: './toolbar-right.component.html',
   styleUrls: ['./toolbar-right.component.scss']
 })
-export class NavRightComponent {
+export class NavRightComponent implements OnInit {
+  public FullName: string=''; 
+  public UserName: string='';
   // public props
   private _router=inject(Router);
   private dialogService = inject(DialogServiceService);
@@ -80,6 +82,17 @@ export class NavRightComponent {
       img: 'assets/images/layout/img-announcement-4.png'
     }
   ];
+  ngOnInit(): void {
+    const userData = localStorage.getItem('user');
+    if (userData) {
+      const user = JSON.parse(userData);
+      //[user.FirstName, user.MiddleName, user.LastName]
+      this.FullName = this.FullName = [user.FirstName]
+      .filter(name => !!name)   // removes null, undefined, and empty string
+      .join(' ');
+      this.UserName = user.Username;
+    }
+  }
   logout() {
     // Perform logout logic here
     localStorage.clear();

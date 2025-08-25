@@ -37,6 +37,7 @@ export interface UserForm {
   mobile: string;
   schoolID: string;
   roleID: string;
+  Subjects?: string;
   }
 
 export interface UserListing {
@@ -46,4 +47,37 @@ export interface UserListing {
   FullName: string;
   ContactNumber: string;
   EmailID: string;
+}
+
+
+export interface MenuItem {
+  id: number;
+  title: string;
+  type: string;
+  classes?: string | null;
+  icon?: string | null;
+  url?: string | null;
+  parent_id: number;
+  children?: MenuItem[];
+}
+
+export interface Subjects {
+  subjectId: number;
+  subjectName: string;
+  subjectCode: string;
+}
+
+export interface Classes {
+  ClassID?: number;
+  ClassName?: string;
+  ClassTeacher?:string;
+  NoOfStudents?: number;
+  ClassDisplayName?: string;
+  ClassFee?: number;
+}
+
+export interface ApiResponse<T> {
+  success: boolean;
+  message: string;
+  data: T;
 }
