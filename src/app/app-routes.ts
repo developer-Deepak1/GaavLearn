@@ -58,6 +58,12 @@ export const AdminRoutes: Routes = [
         canActivate: [authGuard],
         data: { roles: [USER_ROLES.SUPER_ADMIN, USER_ROLES.CLIENT_ADMIN] }
       },
+      {
+        path: 'class-add-edit',
+        loadComponent: () => import('./academic/classes/classes.component').then((m) => m.ClassesComponent),
+        canActivate: [authGuard],
+        data: { roles: [USER_ROLES.SUPER_ADMIN, USER_ROLES.CLIENT_ADMIN] }
+      },
       //start -teacher section
       { 
         path: 'teacher-add',

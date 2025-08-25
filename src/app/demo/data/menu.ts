@@ -10,6 +10,23 @@ export const menus: Navigation[] = [
     url: '/dashboard',
   },
   {
+    id: 'Academic',
+    title: 'Academic',
+    type: 'group',
+    icon: 'icon-user',
+    url: '/user-listing',
+    children: [
+      {
+        id: 'addclass',
+        title: 'Classes',
+        type: 'item',
+        classes: 'nav-item',
+        url: '/class-add-edit',
+        icon: '#custom-user-add'
+      }
+    ]
+  },
+  {
     id: 'user',
     title: 'User Management',
     type: 'group',

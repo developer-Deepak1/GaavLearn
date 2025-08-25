@@ -66,3 +66,18 @@ export interface Subjects {
   subjectName: string;
   subjectCode: string;
 }
+
+export interface Classes {
+  ClassID?: number;
+  ClassName?: string;
+  ClassTeacher?:string;
+  NoOfStudents?: number;
+  ClassDisplayName?: string;
+  ClassFee?: number;
+}
+
+export interface ApiResponse<T> {
+  success: boolean;
+  message: string;
+  data: T;
+}
