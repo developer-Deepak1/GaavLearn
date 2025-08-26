@@ -22,8 +22,8 @@ export default class LoginComponent {
   // public props
   hide = true;
   email = new FormControl('', [Validators.required]);
-  Email = 'superSA002';
-  password = 'superSA002';
+  Email = 'GWHCA001';
+  password = 'GWHCA001a';
   private _userService = inject(UserService);
   private _router = inject(Router);
   private messageService = inject(MessageService);
